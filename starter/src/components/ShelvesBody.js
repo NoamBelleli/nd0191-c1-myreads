@@ -3,15 +3,15 @@ import Shelf from "./Shelf";
 
 const ShelvesBody = ({books}) => {
 
-    const currentlyReading = [];
-    const wantToRead = [];
-    const read = [];
+    const currentlyReading = books.filter((book)=> book.shelf === "currentlyReading");
+    const wantToRead = books.filter((book)=> book.shelf === "wantToRead");
+    const read = books.filter((book)=> book.shelf === "read");
 
     return (
       <div>
-            <shelf title="Currently Reading" books={ currentlyReading } />
-        <shelf title="Want to Read" books={ wantToRead }/>
-        <shelf title="Read" books={ read}/>
+            <Shelf title="Currently Reading" books={ currentlyReading } />
+        <Shelf title="Want to Read" books={ wantToRead }/>
+        <Shelf title="Read" books={ read}/>
       </div>
     );
 

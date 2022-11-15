@@ -1,13 +1,16 @@
 import "./App.css";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import ShelvesBody from "./components/ShelvesBody";
 
 function App() {
   const [showSearchPage, setShowSearchpage] = useState(false);
   const [books, setBooks] = useState([]);
 
-
-
+  useEffect(() => {
+    getAll().then((data) => {
+      setBooks(data);
+    });
+  }, []);
 
   return (
     <div className="app">
@@ -37,13 +40,17 @@ function App() {
             <h1>MyReads</h1>
           </div>
           <div className="list-books-content">
-              <ShelvesBody books={ } />
-              
-          <div className="open-search">
-            <a onClick={() => setShowSearchpage(!showSearchPage)}>Add a book</a>
+            <ShelvesBody books={books} />
+
+            <div className="open-search">
+              <a onClick={() => setShowSearchpage(!showSearchPage)}>
+                Add a book
+              </a>
+            </div>
           </div>
         </div>
       )}
+      ;
     </div>
   );
 }
