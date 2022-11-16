@@ -9,7 +9,7 @@ const ShelvesBody = ({booksList, moveToShelf}) => {
 
     return (
       <div>
-            <Shelf title="Currently Reading" moveToShelf={moveToShelf} booksList={ currentlyReading } />
+        <Shelf title="Currently Reading" moveToShelf={moveToShelf} booksList={ currentlyReading } />
         <Shelf title="Want to Read" moveToShelf={moveToShelf} booksList={ wantToRead }/>
         <Shelf title="Read" moveToShelf={moveToShelf} booksList={ read}/>
       </div>

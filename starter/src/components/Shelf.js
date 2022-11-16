@@ -8,11 +8,11 @@ const Shelf = ({booksList, title, moveToShelf}) => {
       <h2 className="bookshelf-title">{title}</h2>
       <div className="bookshelf-books">
         <ol className="books-grid">
-          {booksList.map((book) => {
+          {booksList.map((book) => (
             <li key={book.id}>
               <BookItem moveToShelf={moveToShelf} book={book} />
             </li>
-          })}
+          ))}
         </ol>
       </div>
     </div>
