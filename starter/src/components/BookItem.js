@@ -2,10 +2,9 @@ import React from "react";
 
 const BookItem = ({ book, moveToShelf }) => {
 
-  const { title, author, imageLink } = book;
+  const { title, authors, imageLinks } = book;
   const handleChangeShelf = (e) => {
-    const newShelf = e.target.value;
-    console.log("Moving book to ", newShelf, book);
+    const newShelf = e.target.value;    
     moveToShelf(book, newShelf)
   }
   
@@ -19,14 +18,12 @@ const BookItem = ({ book, moveToShelf }) => {
           style={{
             width: 128,
             height: 188,
-            backgroundImage: imageLink ? `url(${imageLink.thumbnail})`:"",              
+            backgroundImage: imageLinks ? `url(${imageLinks.thumbnail})`:"",              
           }}
         ></div>
         <div className="book-shelf-changer">
           <select onChange={handleChangeShelf} value={book.shelf || "none"}>
-            <option value="none" disabled>
-              Move to...
-            </option>
+            <option disabled> Move to... </option>
             <option value="currentlyReading">Currently Reading</option>
             <option value="wantToRead">Want to Read</option>
             <option value="read">Read</option>
@@ -35,7 +32,7 @@ const BookItem = ({ book, moveToShelf }) => {
         </div>
       </div>
       <div className="book-title">{title}</div>
-      <div className="book-authors">{author}</div>
+      <div className="book-authors">{authors}</div>
     </div>
   );
 };

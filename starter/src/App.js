@@ -16,27 +16,11 @@ function App() {
   }, []);
 
   const moveToShelf = async (book, newShelf) => {
-    const response = await update(book, newShelf);
-    setBooksList((books) => {
-      const newBooksList = books.map((b) => {
-        if (b.id !== book.id) {
-          return b;
-        } else {
-          return {
-            ...b,
-            shelf: newShelf,
-          };
-        }
-      });
-    
-      if (!newBooksList.find((currentBook) => currentBook.id === book.id)) {
-        console.log("Book does not exist in library");
-        newBooksList.push(book);
-      }
-      console.log("adding new books ", newBooksList);
-      return newBooksList;
-    });
-  };
+    await update(book, newShelf);
+    setBooksList(booksList.filter(b => b.id !== book.id).concat({ ...book, newShelf }))
+  }
+
+   
 
   const handleSearch = (e) => {
     const userInput = e.target.value;
