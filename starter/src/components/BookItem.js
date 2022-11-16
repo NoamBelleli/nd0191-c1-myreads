@@ -1,6 +1,16 @@
 import React from "react";
 
-const BookItem = () => {
+const BookItem = ({ book, moveToShelf }) => {
+
+  const { title, author, imageLink } = book;
+  const handleChangeShelf = (e) => {
+    const newShelf = e.target.value;
+    console.log("Moving book to ", newShelf, book);
+    moveToShelf(book, newShelf)
+  }
+  
+
+
   return (
     <div className="book">
       <div className="book-top">
@@ -9,12 +19,11 @@ const BookItem = () => {
           style={{
             width: 128,
             height: 188,
-            backgroundImage:
-              'url("http://books.google.com/books/content?id=yDtCuFHXbAYC&printsec=frontcover&img=1&zoom=1&imgtk=AFLRE72RRiTR6U5OUg3IY_LpHTL2NztVWAuZYNFE8dUuC0VlYabeyegLzpAnDPeWxE6RHi0C2ehrR9Gv20LH2dtjpbcUcs8YnH5VCCAH0Y2ICaKOTvrZTCObQbsfp4UbDqQyGISCZfGN&source=gbs_api")',
+            backgroundImage: imageLink ? `url(${imageLink.thumbnail})`:"",              
           }}
         ></div>
         <div className="book-shelf-changer">
-          <select>
+          <select onChange={handleChangeShelf} value={book.shelf || "none"}>
             <option value="none" disabled>
               Move to...
             </option>
@@ -25,8 +34,8 @@ const BookItem = () => {
           </select>
         </div>
       </div>
-      <div className="book-title">{book.title}</div>
-      <div className="book-authors">{book.publisher}</div>
+      <div className="book-title">{title}</div>
+      <div className="book-authors">{author}</div>
     </div>
   );
 };
