@@ -16,7 +16,8 @@ function App() {
   }, []);
 
   const moveToShelf = async (book, newShelf) => {
-    await update(book, newShelf);
+    book.shelf = newShelf;
+    update(book, newShelf);
     setBooksList(booksList.filter(b => b.id !== book.id).concat({ ...book, newShelf }))
   }
 
